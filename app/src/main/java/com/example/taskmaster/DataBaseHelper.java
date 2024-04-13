@@ -37,13 +37,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_WORKER_PHONE = "WORKER_PHONE";
 
     public DataBaseHelper(@Nullable Context context) {
-        super(context, "student.db", null, 1); }
+        super(context, "student.db", null, 1);
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableStatement = "Create TABLE " + CLIENT_TABLE + " (" + COLUMN_CLIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLIENT_NAME + " TEXT, " + COLUMN_CLIENT_EMAIL + " TEXT, " + COLUMN_CLIENT_PASSWORD + " TEXT )";
         sqLiteDatabase.execSQL(createTableStatement);
-        String createTable2Statement = "Create TABLE " + SERVICE_TABLE + " (" + COLUMN_SERVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CATEGORY_NAME + " TEXT, " + COLUMN_SUBCATEGORY_NAME + " TEXT, "+ COLUMN_PRICE + " INTEGER, " + COLUMN_DESCRIPTION + " TEXT,"+COLUMN_IMAGEURL+"TEXT )";
+        String createTable2Statement = "CREATE TABLE " + SERVICE_TABLE + " (" +
+                COLUMN_SERVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_CATEGORY_NAME + " TEXT, " +
+                COLUMN_SUBCATEGORY_NAME + " TEXT, " +
+                COLUMN_PRICE + " INTEGER, " +
+                COLUMN_DESCRIPTION + " TEXT, " +
+                COLUMN_IMAGEURL + " TEXT)";
         sqLiteDatabase.execSQL(createTable2Statement);
         String createTable3Statement = "CREATE TABLE " + ORDER_TABLE + " (" +
                 COLUMN_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -54,10 +61,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_TIME + " TEXT, " +
                 COLUMN_WORKER_NAME + " TEXT, " +
                 COLUMN_WORKER_PHONE + " TEXT, " +
-                COLUMN_ORDER_STATUS + " TEXT, "+
+                COLUMN_ORDER_STATUS + " TEXT, " +
                 "FOREIGN KEY (" + COLUMN_CLIENT_ID + ") REFERENCES " + CLIENT_TABLE + " ('CLIENT_ID'), " +
-                "FOREIGN KEY (" + COLUMN_SERVICE_ID + ") REFERENCES " + SERVICE_TABLE + " ('SERVICE_ID')) "
-                ;
+                "FOREIGN KEY (" + COLUMN_SERVICE_ID + ") REFERENCES " + SERVICE_TABLE + " ('SERVICE_ID')) ";
         sqLiteDatabase.execSQL(createTable3Statement);
     }
 
@@ -65,7 +71,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
     }
 
-    public boolean addClient(clientmod clientmod){
+    public boolean addClient(clientmod clientmod) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -73,12 +79,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_CLIENT_EMAIL, clientmod.getEmail());
         cv.put(COLUMN_CLIENT_PASSWORD, clientmod.getPassword());
         long insert = db.insert(CLIENT_TABLE, null, cv);
-        if(insert == -1){
+        if (insert == -1) {
             return false;
-        }
-        else {
+        } else {
             return true;
-        } }
+        }
+    }
+
     public boolean addService(servicemod servicemod) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -90,64 +97,65 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_IMAGEURL, servicemod.getImageUrl());
 
         long insert = db.insert(SERVICE_TABLE, null, cv);
-        if(insert == -1){
+        if (insert == -1) {
             return false;
-        }
-        else {
+        } else {
             return true;
-        } }
-    public boolean addOrder(ordermod ordermod){
+        }
+    }
+
+    public boolean addOrder(ordermod ordermod) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_SERVICE_ID,ordermod.getServiceID() );
-        cv.put(COLUMN_CLIENT_ID,ordermod.getClientID() );
-        cv.put(COLUMN_LOCATION,ordermod.getLocation() );
+        cv.put(COLUMN_SERVICE_ID, ordermod.getServiceID());
+        cv.put(COLUMN_CLIENT_ID, ordermod.getClientID());
+        cv.put(COLUMN_LOCATION, ordermod.getLocation());
         cv.put(COLUMN_RATE, ordermod.getRate());
         cv.put(COLUMN_TIME, ordermod.getTime());
         cv.put(COLUMN_WORKER_NAME, ordermod.getWorkerName());
         cv.put(COLUMN_WORKER_PHONE, ordermod.getWorkerPhone());
         cv.put(COLUMN_ORDER_STATUS, ordermod.getOrderStatus());
         long insert = db.insert(ORDER_TABLE, null, cv);
-        if(insert == -1){
+        if (insert == -1) {
             return false;
+        } else {
+            return true;
         }
-        else {
-            return true;
-        } }
+    }
 
-    public boolean DeleteClient(clientmod clientmod){
+    public boolean DeleteClient(clientmod clientmod) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString= "Delete From " + CLIENT_TABLE + " WHERE " +
-                COLUMN_CLIENT_ID + " = " + clientmod.getClientID() ;
+        String queryString = "Delete From " + CLIENT_TABLE + " WHERE " +
+                COLUMN_CLIENT_ID + " = " + clientmod.getClientID();
         Cursor cursor = db.rawQuery(queryString, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
-    public boolean DeleteService(servicemod servicemod){
+    public boolean DeleteService(servicemod servicemod) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString= "Delete From " + SERVICE_TABLE + " WHERE " +
-                COLUMN_SERVICE_ID + " = " + servicemod.getServiceID() ;
+        String queryString = "Delete From " + SERVICE_TABLE + " WHERE " +
+                COLUMN_SERVICE_ID + " = " + servicemod.getServiceID();
         Cursor cursor = db.rawQuery(queryString, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 
-    public boolean DeleteOrder(ordermod ordermod){
+    public boolean DeleteOrder(ordermod ordermod) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString= "Delete From " + ORDER_TABLE + " WHERE " +
-                COLUMN_ORDER_ID+ " = " + ordermod.getOrderID() ;
+        String queryString = "Delete From " + ORDER_TABLE + " WHERE " +
+                COLUMN_ORDER_ID + " = " + ordermod.getOrderID();
         Cursor cursor = db.rawQuery(queryString, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -158,11 +166,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         ordermod order = null;
 
-        Cursor cursor = db.query(ORDER_TABLE, null, COLUMN_ORDER_ID + " = ?",
-                new String[]{String.valueOf(orderId)}, null, null, null);
+        // Define the SQL query
+        String query = "SELECT * FROM " + ORDER_TABLE + " WHERE " + COLUMN_ORDER_ID + " = ?";
 
+        // Execute the query
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(orderId)});
+
+        // Check if the cursor has data
         if (cursor != null && cursor.moveToFirst()) {
-            // Extract data from cursor and create a new Order object
+            // Extract data from the cursor and create a new Order object
             order = new ordermod();
             order.setOrderID(cursor.getInt(cursor.getColumnIndex(COLUMN_ORDER_ID)));
             order.setServiceID(cursor.getInt(cursor.getColumnIndex(COLUMN_SERVICE_ID)));
@@ -173,10 +185,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             order.setWorkerName(cursor.getString(cursor.getColumnIndex(COLUMN_WORKER_NAME)));
             order.setWorkerPhone(cursor.getString(cursor.getColumnIndex(COLUMN_WORKER_PHONE)));
             order.setOrderStatus(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_STATUS)));
-
-            cursor.close();
         }
 
+        // Close the cursor and database connection
+        if (cursor != null) {
+            cursor.close();
+        }
         db.close();
 
         return order;
@@ -208,5 +222,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return service;
     }
+
 
 }

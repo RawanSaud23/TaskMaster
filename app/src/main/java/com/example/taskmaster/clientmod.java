@@ -14,7 +14,8 @@ public class clientmod {
         this.password = password;
     }
 
-
+    public clientmod() {
+    }
 
     public String getcName() {
         return cName;

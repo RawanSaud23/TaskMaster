@@ -20,25 +20,25 @@ public class ActiveOrder extends AppCompatActivity {
         setContentView(R.layout.activity_active_order);
 
         // Get the order ID from the intent
-        //int orderId = getIntent().getIntExtra("ORDER_ID", 111);
+        int orderId = getIntent().getIntExtra("ORDER_ID", -1);
 
         // Create an instance of your DataBaseHelper class
-       // DataBaseHelper dbHelper = new DataBaseHelper(this);
+       DataBaseHelper dbHelper = new DataBaseHelper(this);
 
         // Retrieve the order details based on the order ID
-      //  ordermod order = dbHelper.getOrderById(orderId);
-        ordermod order = new ordermod(111, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
-        ordermod order1 = new ordermod(112, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Rejected", "051234567");
-        ordermod order3 = new ordermod(113, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
+       ordermod order= dbHelper.getOrderById(111);
+        //ordermod order = new ordermod(111, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
+       // ordermod order1 = new ordermod(112, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Rejected", "051234567");
+        //ordermod order3 = new ordermod(113, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
 
         if (order != null) {
-            //  int serviceId = order.getServiceID();
-            // servicemod service = dbHelper.getserviceById(serviceId);
+           // int serviceId = order.getServiceID();
+           // servicemod service = dbHelper.getserviceById(serviceId);
 
             // Proceed with displaying the order details
             displayOrderDetails(order);
-            displayOrderDetails(order1);
-            displayOrderDetails(order3);
+           // displayOrderDetails(order1);
+           // displayOrderDetails(order3);
 
 
         } else {
@@ -77,7 +77,7 @@ public class ActiveOrder extends AppCompatActivity {
         // Set order details to the views
         orderLocationTextView.setText(order.getLocation());
         orderTimeTextView.setText(order.getTime());
-        orderWorkerNameTextView.setText(order.getWorkerName());
+        orderWorkerNameTextView.setText(order.getWorkerName()+" "+order.getWorkerPhone());
         orderStatusTextView.setText(order.getOrderStatus());
 
         // Add the order item view to the ordersContainer
