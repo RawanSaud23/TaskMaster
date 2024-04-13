@@ -13,8 +13,26 @@
         android:theme="@style/Theme.TaskMaster"
         tools:targetApi="31">
         <activity
-            android:name=".ActiveOrder"
+            android:name=".order_item_rejected"
             android:exported="false" />
+        <activity
+            android:name=".order_item"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ActiveOrder"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SearchOrderNotfound"
             android:exported="false" />

@@ -1,114 +1,87 @@
 package com.example.taskmaster;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextClock;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import java.util.List;
 
 public class ActiveOrder extends AppCompatActivity {
 
-    Button btnCancle;
-    AlertDialog.Builder builder;
-
-
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_active_order);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        //alt cancel
-        btnCancle = findViewById(R.id.CancleOreder);
-        builder = new AlertDialog.Builder(this);
+        // Get the order ID from the intent
+        //int orderId = getIntent().getIntExtra("ORDER_ID", 111);
 
-        btnCancle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.setTitle("CANCELLTION COFIRMATION!")
-                        .setMessage("Are you sure you want to cancel your order?")
-                        .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish(); //next phase we will make it work as it should be :)
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.dismiss(); // Close the dialog
-                            }
-                        })
-                        .show();
-            }
-        });
+        // Create an instance of your DataBaseHelper class
+       // DataBaseHelper dbHelper = new DataBaseHelper(this);
 
-        //Alt time
-        TextClock TxtTime = findViewById(R.id.textClock);
-        builder = new AlertDialog.Builder(this);
+        // Retrieve the order details based on the order ID
+      //  ordermod order = dbHelper.getOrderById(orderId);
+        ordermod order = new ordermod(111, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
+        ordermod order1 = new ordermod(112, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Rejected", "051234567");
+        ordermod order3 = new ordermod(113, 123, 1119, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
 
-        btnCancle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.setTitle("UPDATE TIME COFIRMATION!")
-                        .setMessage("Are you sure you want to update time of your order?")
-                        .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish(); //next phase we will make it work as it should be :)
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.dismiss(); // Close the dialog
-                            }
-                        })
-                        .show();
-            }
-        });
+        if (order != null) {
+            //  int serviceId = order.getServiceID();
+            // servicemod service = dbHelper.getserviceById(serviceId);
 
-        //alt loc
-        TextView TxtLoc = findViewById(R.id.loc);
-        builder = new AlertDialog.Builder(this);
+            // Proceed with displaying the order details
+            displayOrderDetails(order);
+            displayOrderDetails(order1);
+            displayOrderDetails(order3);
 
-        btnCancle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.setTitle("UPDATE LOCATION COFIRMATION!")
-                        .setMessage("Are you sure you want to update your location for the order?")
-                        .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                finish(); //next phase we will make it work as it should be :)
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                dialog.dismiss(); // Close the dialog
-                            }
-                        })
-                        .show();
-            }
-        });
+
+        } else {
+            // Handle case where order with given ID does not exist
+        }
     }
+    private void displayOrderDetails(ordermod order) {
+
+        //TextView serviceNameTextView = findViewById(R.id.orderName);
+        //TextView servicePriceTextView = findViewById(R.id.amount);
+        // Add more TextViews for other service details as needed
+
+
+        // Update views with service details
+        //  serviceNameTextView.setText(service.getSubcategory());
+        //  servicePriceTextView.setText(String.valueOf(service.getPrice()));
+        // Update more TextViews with other service details as needed
+        View orderItemView;
+
+
+        LinearLayout ordersContainer = findViewById(R.id.ordersContainer);
+
+        // Inflate the order item layout for this order
+        if(order.getOrderStatus().equals("Accepted")) {
+            orderItemView = LayoutInflater.from(this).inflate(R.layout.activity_order_item, ordersContainer, false);
+        }
+        else{
+           orderItemView = LayoutInflater.from(this).inflate(R.layout.activity_order_item_rejected, ordersContainer, false);
+        }
+        // Find views inside the order item layout
+        TextView orderLocationTextView = orderItemView.findViewById(R.id.loc);
+        TextView orderTimeTextView = orderItemView.findViewById(R.id.textClock);
+        TextView orderWorkerNameTextView = orderItemView.findViewById(R.id.WorkerInfo);
+        TextView orderStatusTextView = orderItemView.findViewById(R.id.orderStatus);
+
+        // Set order details to the views
+        orderLocationTextView.setText(order.getLocation());
+        orderTimeTextView.setText(order.getTime());
+        orderWorkerNameTextView.setText(order.getWorkerName());
+        orderStatusTextView.setText(order.getOrderStatus());
+
+        // Add the order item view to the ordersContainer
+        ordersContainer.addView(orderItemView);
+    }
+
 }

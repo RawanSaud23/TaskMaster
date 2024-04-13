@@ -7,14 +7,20 @@ public class servicemod {
     private String subcategory;
     private int price;
     private String description;
+    private String imageUrl;
 
-    public servicemod(String categoryName, int serviceID, String subcategory, int price, String description) {
+    public servicemod() {
+    }
+
+    public servicemod(String categoryName, int serviceID, String subcategory, int price, String description, String imageUrl) {
         this.categoryName = categoryName;
         this.serviceID = serviceID;
         this.subcategory = subcategory;
         this.price = price;
         this.description = description;
+        this.imageUrl=imageUrl;
     }
+
 
     public String getCategoryName() {
         return categoryName;
@@ -55,4 +61,10 @@ public class servicemod {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    public String getImageUrl() {return imageUrl; }
+
 }

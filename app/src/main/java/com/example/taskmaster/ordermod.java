@@ -11,6 +11,9 @@ public class ordermod {
     private String orderStatus;
     private String workerPhone;
 
+    public ordermod() {
+    }
+
     public ordermod(int orderID, int serviceID, int clientID, String location, int rate, String time, String workerName, String orderStatus, String workerPhone) {
         this.orderID = orderID;
         this.serviceID = serviceID;
@@ -94,4 +97,7 @@ public class ordermod {
     public void setWorkerPhone(String workerPhone) {
         this.workerPhone = workerPhone;
     }
+
+
 }
+

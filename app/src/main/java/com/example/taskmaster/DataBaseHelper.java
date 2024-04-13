@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,6 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SUBCATEGORY_NAME = "SUBCATEGORY_NAME";
     public static final String COLUMN_PRICE = "PRICE";
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
+    public static final String COLUMN_IMAGEURL = "IMAGEURL";
 
     //order table
     public static final String ORDER_TABLE = "ORDER_Table";
@@ -41,7 +43,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String createTableStatement = "Create TABLE " + CLIENT_TABLE + " (" + COLUMN_CLIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CLIENT_NAME + " TEXT, " + COLUMN_CLIENT_EMAIL + " TEXT, " + COLUMN_CLIENT_PASSWORD + " TEXT )";
         sqLiteDatabase.execSQL(createTableStatement);
-        String createTable2Statement = "Create TABLE " + SERVICE_TABLE + " (" + COLUMN_SERVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CATEGORY_NAME + " TEXT, " + COLUMN_SUBCATEGORY_NAME + " TEXT, "+ COLUMN_PRICE + " INTEGER, " + COLUMN_DESCRIPTION + " TEXT )";
+        String createTable2Statement = "Create TABLE " + SERVICE_TABLE + " (" + COLUMN_SERVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_CATEGORY_NAME + " TEXT, " + COLUMN_SUBCATEGORY_NAME + " TEXT, "+ COLUMN_PRICE + " INTEGER, " + COLUMN_DESCRIPTION + " TEXT,"+COLUMN_IMAGEURL+"TEXT )";
         sqLiteDatabase.execSQL(createTable2Statement);
         String createTable3Statement = "CREATE TABLE " + ORDER_TABLE + " (" +
                 COLUMN_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -77,15 +79,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         else {
             return true;
         } }
-    public boolean addService(servicemod servicemod){
+    public boolean addService(servicemod servicemod) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_CATEGORY_NAME,servicemod.getCategoryName() );
+        cv.put(COLUMN_CATEGORY_NAME, servicemod.getCategoryName());
         cv.put(COLUMN_SUBCATEGORY_NAME, servicemod.getSubcategory());
         cv.put(COLUMN_PRICE, servicemod.getPrice());
-        cv.put(COLUMN_DESCRIPTION,servicemod.getDescription() );
-        long insert = db.insert(CLIENT_TABLE, null, cv);
+        cv.put(COLUMN_DESCRIPTION, servicemod.getDescription());
+        cv.put(COLUMN_IMAGEURL, servicemod.getImageUrl());
+
+        long insert = db.insert(SERVICE_TABLE, null, cv);
         if(insert == -1){
             return false;
         }
@@ -104,7 +108,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_WORKER_NAME, ordermod.getWorkerName());
         cv.put(COLUMN_WORKER_PHONE, ordermod.getWorkerPhone());
         cv.put(COLUMN_ORDER_STATUS, ordermod.getOrderStatus());
-        long insert = db.insert(CLIENT_TABLE, null, cv);
+        long insert = db.insert(ORDER_TABLE, null, cv);
         if(insert == -1){
             return false;
         }
@@ -146,6 +150,63 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         } else{
             return false;
         }
+    }
+
+    // Method to retrieve order details based on order ID
+    @SuppressLint("Range")
+    public ordermod getOrderById(int orderId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ordermod order = null;
+
+        Cursor cursor = db.query(ORDER_TABLE, null, COLUMN_ORDER_ID + " = ?",
+                new String[]{String.valueOf(orderId)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Extract data from cursor and create a new Order object
+            order = new ordermod();
+            order.setOrderID(cursor.getInt(cursor.getColumnIndex(COLUMN_ORDER_ID)));
+            order.setServiceID(cursor.getInt(cursor.getColumnIndex(COLUMN_SERVICE_ID)));
+            order.setClientID(cursor.getInt(cursor.getColumnIndex(COLUMN_CLIENT_ID)));
+            order.setLocation(cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION)));
+            order.setRate(cursor.getInt(cursor.getColumnIndex(COLUMN_RATE)));
+            order.setTime(cursor.getString(cursor.getColumnIndex(COLUMN_TIME)));
+            order.setWorkerName(cursor.getString(cursor.getColumnIndex(COLUMN_WORKER_NAME)));
+            order.setWorkerPhone(cursor.getString(cursor.getColumnIndex(COLUMN_WORKER_PHONE)));
+            order.setOrderStatus(cursor.getString(cursor.getColumnIndex(COLUMN_ORDER_STATUS)));
+
+            cursor.close();
+        }
+
+        db.close();
+
+        return order;
+    }
+
+
+    @SuppressLint("Range")
+    public servicemod getserviceById(int serviceId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        servicemod service = null;
+
+        Cursor cursor = db.query(SERVICE_TABLE, null, COLUMN_SERVICE_ID + " = ?",
+                new String[]{String.valueOf(serviceId)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Extract data from cursor and create a new Service object
+            service = new servicemod();
+            service.setServiceID(cursor.getInt(cursor.getColumnIndex(COLUMN_SERVICE_ID)));
+            service.setCategoryName(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY_NAME)));
+            service.setSubcategory(cursor.getString(cursor.getColumnIndex(COLUMN_SUBCATEGORY_NAME)));
+            service.setPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
+            service.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+            service.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEURL)));
+
+            cursor.close();
+        }
+
+        db.close();
+
+        return service;
     }
 
 }
