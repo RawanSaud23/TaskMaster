@@ -23,7 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SUBCATEGORY_NAME = "SUBCATEGORY_NAME";
     public static final String COLUMN_PRICE = "PRICE";
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
-    public static final String COLUMN_IMAGEURL = "IMAGEURL";
+    public static final String COLUMN_IMAGE = "IMAGE";
 
     //order table
     public static final String ORDER_TABLE = "ORDER_Table";
@@ -49,8 +49,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_CATEGORY_NAME + " TEXT, " +
                 COLUMN_SUBCATEGORY_NAME + " TEXT, " +
                 COLUMN_PRICE + " INTEGER, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_IMAGEURL + " TEXT)";
+                COLUMN_DESCRIPTION + " TEXT, " + COLUMN_IMAGE + " TEXT )";
         sqLiteDatabase.execSQL(createTable2Statement);
         String createTable3Statement = "CREATE TABLE " + ORDER_TABLE + " (" +
                 COLUMN_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -94,7 +93,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_SUBCATEGORY_NAME, servicemod.getSubcategory());
         cv.put(COLUMN_PRICE, servicemod.getPrice());
         cv.put(COLUMN_DESCRIPTION, servicemod.getDescription());
-        cv.put(COLUMN_IMAGEURL, servicemod.getImageUrl());
+        cv.put(COLUMN_IMAGE, servicemod.getImageUrl());
 
         long insert = db.insert(SERVICE_TABLE, null, cv);
         if (insert == -1) {
@@ -213,7 +212,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             service.setSubcategory(cursor.getString(cursor.getColumnIndex(COLUMN_SUBCATEGORY_NAME)));
             service.setPrice(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
             service.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
-            service.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEURL)));
+            service.setImageUrl(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGE)));
 
             cursor.close();
         }
