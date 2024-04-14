@@ -51,15 +51,16 @@
             android:layout_alignParentEnd="true"
             android:src="@drawable/baseline_add_location_alt_24" />
 
-        <EditText
+        <TextView
             android:id="@+id/loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/WorkerInfo"
-            android:layout_marginStart="42dp"
+            android:layout_marginStart="48dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
+            android:layout_marginBottom="12dp"
             android:textSize="15sp"
             />
 
@@ -73,15 +74,16 @@
             android:layout_marginEnd="60dp"
             android:src="@drawable/baseline_access_time_filled_24" />
 
-        <EditText
+        <TextView
             android:id="@+id/textClock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/amount"
-            android:layout_marginStart="199dp"
+            android:layout_marginStart="205dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
+            android:layout_marginBottom="12dp"
             android:textSize="15sp" />
 
         <ImageView
