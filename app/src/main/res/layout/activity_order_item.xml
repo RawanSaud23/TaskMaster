@@ -47,7 +47,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="40dp"
-            android:layout_marginEnd="205dp"
+            android:layout_marginEnd="213dp"
             android:layout_below="@+id/orderStatus"
             android:layout_alignParentEnd="true"
             android:src="@drawable/baseline_add_location_alt_24" />
@@ -71,7 +71,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="45dp"
             android:layout_below="@id/orderStatus"
-            android:layout_marginEnd="55dp"
+            android:layout_marginEnd="60dp"
             android:src="@drawable/baseline_access_time_filled_24" />
 
         <EditText
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/amount"
-            android:layout_marginStart="185dp"
+            android:layout_marginStart="199dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -91,7 +91,7 @@
             android:layout_height="20dp"
             android:layout_below="@+id/Subcategory1image"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="310dp"
+            android:layout_marginEnd="317dp"
             android:src="@drawable/baseline_contact_phone_24" />
 
         <TextView
@@ -121,7 +121,6 @@
             android:layout_below="@+id/Subcategory1image"
             android:layout_marginStart="300dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="150"
             android:textColor="@color/black"
             android:textSize="15sp" />
 
