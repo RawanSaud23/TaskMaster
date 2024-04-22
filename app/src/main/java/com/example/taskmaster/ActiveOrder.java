@@ -23,23 +23,26 @@ public class ActiveOrder extends AppCompatActivity {
         setContentView(R.layout.activity_active_order);
 
         // Get the order ID from the intent
-        int orderId = getIntent().getIntExtra("ORDER_ID", -1);
+        DataBaseHelper dbHelper = new DataBaseHelper(this);
+        String targetEmail = "amustafa@hotmail.com";
+        int i = 1;
 
-        // Create an instance of your DataBaseHelper class
-       DataBaseHelper dbHelper = new DataBaseHelper(this);
 
-        // Retrieve the order details based on the order ID ! we should change number 1
-       ordermod order= dbHelper.getOrderById(4);
-       ordermod order1= dbHelper.getOrderById(5);
+        while (true) {
+            ordermod order = dbHelper.getOrderById(i);
+            if (order == null) {
+                // No more orders available, exit the loop
+                break;
+            }
 
-        if (order != null) {
-            // Proceed with displaying the order details
-            displayOrderDetails(order);
-            displayOrderDetails(order1);
+            if (order.getClientID().equals(targetEmail)) {
+                displayOrderDetails(order);
+            }
+            i++;
 
-        } else {
-            // Handle case where order with given ID does not exist
+
         }
+
     }
     private void displayOrderDetails(ordermod order) {
         // Inflate the appropriate layout based on the order status
