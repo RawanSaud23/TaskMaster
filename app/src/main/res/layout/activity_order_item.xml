@@ -52,12 +52,13 @@
             android:layout_alignParentEnd="true"
             android:src="@drawable/baseline_add_location_alt_24" />
 
-        <EditText
+        <TextView
             android:id="@+id/loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/WorkerInfo"
-            android:layout_marginStart="42dp"
+            android:layout_marginStart="49dp"
+            android:layout_marginBottom="13dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -74,16 +75,19 @@
             android:layout_marginEnd="60dp"
             android:src="@drawable/baseline_access_time_filled_24" />
 
-        <EditText
+        <TextView
             android:id="@+id/textClock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/amount"
-            android:layout_marginStart="199dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginBottom="12dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            />
+
 
         <ImageView
             android:id="@id/workericon"
@@ -122,7 +126,8 @@
             android:layout_marginStart="300dp"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            />
 
         <TextView
             android:id="@+id/Rate"
@@ -149,26 +154,19 @@
 
         <Button
             android:id="@+id/CancleOreder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="230dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="#C8D22B2B"
-            android:text="Cancel"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="310dp"
+            android:background="@drawable/delete"/>
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="270dp"
+            android:background="@drawable/edit" />
 
 
     </RelativeLayout>
 
-
 </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-
