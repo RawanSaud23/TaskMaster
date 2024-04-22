@@ -13,7 +13,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String CLIENT_TABLE = "CLIENT_Table";
     public static final String COLUMN_CLIENT_NAME = "CLIENT_NAME";
     public static final String COLUMN_CLIENT_ID = "CLIENT_ID";
-    public static final String COLUMN_CLIENT_EMAIL = "STUDENT_EMAIL";
+    public static final String COLUMN_CLIENT_EMAIL = "ClIENT_EMAIL";
     public static final String COLUMN_CLIENT_PASSWORD = "CLIENT_PASSWORD";
 
     //service table
@@ -37,7 +37,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_WORKER_PHONE = "WORKER_PHONE";
 
     public DataBaseHelper(@Nullable Context context) {
-        super(context, "student.db", null, 1);
+        super(context, "taskmaster.db", null, 1);
     }
 
     @Override
@@ -158,6 +158,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    //method to check username and password for login
+    public Boolean checkUsernamePassword(String username, String password) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * from " + CLIENT_TABLE + " where " + COLUMN_CLIENT_EMAIL + " = ? and " + COLUMN_CLIENT_PASSWORD + " = ?", new String[]{username, password});
+        if (cursor.getCount() > 0)
+            return true;
+        return false;
+    }
+
+
 
     // Method to retrieve order details based on order ID
     @SuppressLint("Range")
