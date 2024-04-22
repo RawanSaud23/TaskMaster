@@ -13,6 +13,24 @@
         android:theme="@style/Theme.TaskMaster"
         tools:targetApi="31">
         <activity
+            android:name=".subcategorydetailsdynamo"
+            android:exported="false" />
+        <activity
+            android:name=".subcategorydetailswaterfilter"
+            android:exported="false" />
+        <activity
+            android:name=".subcategorydetailsroofinsulation"
+            android:exported="false" />
+        <activity
+            android:name=".subcategorydetailswashbasins"
+            android:exported="false" />
+        <activity
+            android:name=".subcategorydetailscarpetwash"
+            android:exported="false" />
+        <activity
+            android:name=".subcategorydetailsclotheswashing"
+            android:exported="false" />
+        <activity
             android:name=".order_item_rejected"
             android:exported="false" />
         <activity

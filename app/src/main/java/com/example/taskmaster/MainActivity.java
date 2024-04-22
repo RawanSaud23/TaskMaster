@@ -52,14 +52,14 @@ public class MainActivity extends AppCompatActivity {
         dbhelper.addClient(client8);
         dbhelper.addClient(client9);
 
-        servicemod service1 = new servicemod("Cleaning", 1, "Shoe Wash", 25, "", "@drawable/washbasins");
-        servicemod service2 = new servicemod("Cleaning", 2, "Deep cleaning", 250, "", "@drawable/washbasins");
-        servicemod service3 = new servicemod("Cleaning", 3, "Clothes Wash", 50, "", "@drawable/washbasins");
-        servicemod service4 = new servicemod("Cleaning", 4, "Carpet Wash", 75, "", "@drawable/washbasins");
-        servicemod service5 = new servicemod("Plumbing", 5, "Washbasins", 45, "", "@drawable/washbasins");
-        servicemod service6 = new servicemod("Plumbing", 6, "Roof Insulation", 1500, "", "@drawable/washbasins");
-        servicemod service7 = new servicemod("Plumbing", 7, "Water Filter", 90, "", "@drawable/washbasins");
-        servicemod service8 = new servicemod("Plumbing", 8, "Dynamo", 1000, "", "@drawable/washbasins");
+        servicemod service1 = new servicemod("Cleaning", 1, "Shoe Wash", 75, "", "@drawable/washbasins");
+        servicemod service2 = new servicemod("Cleaning", 2, "Deep cleaning", 500, "", "@drawable/washbasins");
+        servicemod service3 = new servicemod("Cleaning", 3, "Clothes Washing", 300, "", "@drawable/washbasins");
+        servicemod service4 = new servicemod("Cleaning", 4, "Carpet Wash", 150, "", "@drawable/washbasins");
+        servicemod service5 = new servicemod("Plumbing", 5, "Washbasins", 100, "", "@drawable/washbasins");
+        servicemod service6 = new servicemod("Plumbing", 6, "Roof Insulation", 200, "", "@drawable/washbasins");
+        servicemod service7 = new servicemod("Plumbing", 7, "Water Filter", 75, "", "@drawable/washbasins");
+        servicemod service8 = new servicemod("Plumbing", 8, "Dynamo", 500, "", "@drawable/washbasins");
 
         dbhelper.addService(service1);
         dbhelper.addService(service2);
