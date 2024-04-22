@@ -46,5 +46,6 @@ public class order_item extends Activity {
 
             }
         }, 15, 50, true);
+        dialog.show();
     }
 }
