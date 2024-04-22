@@ -37,7 +37,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_WORKER_PHONE = "WORKER_PHONE";
 
     public DataBaseHelper(@Nullable Context context) {
-        super(context, "taskmaster.db", null, 1);
+        super(context, "Taskmaster.db", null, 1);
     }
 
     @Override
@@ -54,14 +54,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String createTable3Statement = "CREATE TABLE " + ORDER_TABLE + " (" +
                 COLUMN_ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_SERVICE_ID + " INTEGER, " +
-                COLUMN_CLIENT_ID + " INTEGER, " +
+                COLUMN_CLIENT_ID + " TEXT, " +
                 COLUMN_LOCATION + " TEXT, " +
                 COLUMN_RATE + " INTEGER, " +
                 COLUMN_TIME + " TEXT, " +
                 COLUMN_WORKER_NAME + " TEXT, " +
                 COLUMN_WORKER_PHONE + " TEXT, " +
                 COLUMN_ORDER_STATUS + " TEXT, " +
-                "FOREIGN KEY (" + COLUMN_CLIENT_ID + ") REFERENCES " + CLIENT_TABLE + " ('CLIENT_ID'), " +
+                "FOREIGN KEY (" + COLUMN_CLIENT_ID + ") REFERENCES " + CLIENT_TABLE + " ('ClIENT_EMAIL'), " +
                 "FOREIGN KEY (" + COLUMN_SERVICE_ID + ") REFERENCES " + SERVICE_TABLE + " ('SERVICE_ID')) ";
         sqLiteDatabase.execSQL(createTable3Statement);
     }
@@ -188,7 +188,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             order = new ordermod();
             order.setOrderID(cursor.getInt(cursor.getColumnIndex(COLUMN_ORDER_ID)));
             order.setServiceID(cursor.getInt(cursor.getColumnIndex(COLUMN_SERVICE_ID)));
-            order.setClientID(cursor.getInt(cursor.getColumnIndex(COLUMN_CLIENT_ID)));
+            order.setClientID(cursor.getString(cursor.getColumnIndex(COLUMN_CLIENT_ID)));
             order.setLocation(cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION)));
             order.setRate(cursor.getInt(cursor.getColumnIndex(COLUMN_RATE)));
             order.setTime(cursor.getString(cursor.getColumnIndex(COLUMN_TIME)));
