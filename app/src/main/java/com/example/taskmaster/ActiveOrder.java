@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +27,8 @@ public class ActiveOrder extends AppCompatActivity {
 
         // Get the order ID from the intent
         DataBaseHelper dbHelper = new DataBaseHelper(this);
-        String targetEmail = "amustafa@hotmail.com";
+        SharedPreferences sharedPreferences= getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String targetEmail = sharedPreferences.getString("email","email@hotmail.com");
         int i = 1;
 
 
