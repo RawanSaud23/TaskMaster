@@ -2,31 +2,17 @@ package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signup, login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        signup = findViewById(R.id.buttons);
-        login = findViewById(R.id.buttonl);
-        login.setOnClickListener(new View.OnClickListener() { @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
-        } });
 
-        signup.setOnClickListener(new View.OnClickListener() { @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), Signup.class);
-            startActivity(intent);
-        } });
 
 
         DataBaseHelper dbhelper = new DataBaseHelper(this);
@@ -69,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
         dbhelper.addService(service7);
         dbhelper.addService(service8);
 
-        ordermod order1 = new ordermod(1, 1, "amustafa@hotmail.com", "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
-        ordermod order2 = new ordermod(2, 5, "amustafa@hotmail.com", "P.O.Box: 88910", 100, "3:00", "Muhammad Ashraf", "Rejected", "054567890");
-        ordermod order3 = new ordermod(3, 7, "ikhalil@yahoo.com", "P.O.Box: 21634", 25, "2:00", "Asif Hakeem", "Accepted", "059378378");
+        ordermod order1 = new ordermod(1, 1, 9, "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
+        ordermod order2 = new ordermod(2, 5, 8, "P.O.Box: 88910", 100, "3:00", "Muhammad Ashraf", "Rejected", "054567890");
+        ordermod order3 = new ordermod(3, 7, 3, "P.O.Box: 21634", 25, "2:00", "Asif Hakeem", "Accepted", "059378378");
 
         dbhelper.addOrder(order1);
         dbhelper.addOrder(order2);

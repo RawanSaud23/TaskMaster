@@ -3,7 +3,7 @@ package com.example.taskmaster;
 public class ordermod {
     private int orderID;
     private int serviceID;
-    private String clientID;
+    private int clientID;
     private String location;
     private int rate;
     private String time;
@@ -14,7 +14,7 @@ public class ordermod {
     public ordermod() {
     }
 
-    public ordermod(int orderID, int serviceID, String clientID, String location, int rate, String time, String workerName, String orderStatus, String workerPhone) {
+    public ordermod(int orderID, int serviceID, int clientID, String location, int rate, String time, String workerName, String orderStatus, String workerPhone) {
         this.orderID = orderID;
         this.serviceID = serviceID;
         this.clientID = clientID;
@@ -42,11 +42,11 @@ public class ordermod {
         this.serviceID = serviceID;
     }
 
-    public String getClientID() {
+    public int getClientID() {
         return clientID;
     }
 
-    public void setClientID(String clientID) {
+    public void setClientID(int clientID) {
         this.clientID = clientID;
     }
 
