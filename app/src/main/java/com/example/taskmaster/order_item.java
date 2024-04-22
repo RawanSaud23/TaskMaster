@@ -32,19 +32,10 @@ public class order_item extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDilog();
 
             }
         });
 
     }
-    private void openDilog(){
-        TimePickerDialog dialog= new TimePickerDialog(this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                text.setText(String.valueOf(hourOfDay)+":"+String.valueOf(minute));
 
-            }
-        }, 15, 50, true);
-    }
 }
