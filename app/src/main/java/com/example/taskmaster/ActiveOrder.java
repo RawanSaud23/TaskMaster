@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -78,6 +79,14 @@ public class ActiveOrder extends AppCompatActivity {
         } else {
             // Handle case where service details for the order are not available
         }
+
+        // Set margins for the order item view
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(10, 10, 10, 10);
+        orderItemView.setLayoutParams(params);
 
         // Add the order item view to the appropriate container in your layout
         LinearLayout ordersContainer = findViewById(R.id.ordersContainer);
