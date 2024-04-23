@@ -1,6 +1,8 @@
 package com.example.taskmaster;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +17,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class udpateTimeLoc extends AppCompatActivity {
-    private EditText TimeEd,LocEd;
-    private Button update;
-
+    EditText TimeEd,LocEd;
+    Button update;
+    DataBaseHelper DB;
     Toolbar toolbar;
 
     @Override
@@ -30,7 +32,11 @@ public class udpateTimeLoc extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        //get DB
+
+        // Get the order ID from the intent
+        DataBaseHelper dbHelper = new DataBaseHelper(this);
+        SharedPreferences sharedPreferences= getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        //String targetEmail = sharedPreferences.getString("email","email@hotmail.com");
 
         TimeEd= findViewById(R.id.TimeUpd);
         LocEd= findViewById(R.id.LocUpd);
@@ -41,7 +47,6 @@ public class udpateTimeLoc extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //user update info
 
             }
         });

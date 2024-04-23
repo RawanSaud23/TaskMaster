@@ -1,10 +1,12 @@
 package com.example.taskmaster;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +22,7 @@ import java.util.List;
 //try11
 public class ActiveOrder extends AppCompatActivity {
 
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +49,20 @@ public class ActiveOrder extends AppCompatActivity {
 
 
         }
+        //View orderItemView = LayoutInflater.from(this).inflate(R.layout.activity_order_item, null);
+        //btn = orderItemView.findViewById(R.id.editButton);
 
+        /*btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String
+
+                Intent intent= new Intent(ActiveOrder.this, updateTimeLoc.class);
+                intent.putExtra("keyID", )
+            }
+        }); */
     }
+
     private void displayOrderDetails(ordermod order) {
         // Inflate the appropriate layout based on the order status
         View orderItemView;
