@@ -20,11 +20,11 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        signup = findViewById(R.id.signup);
-        login = findViewById(R.id.login);
+        name = findViewById(R.id.editTextText);
+        email = findViewById(R.id.editTextTextEmailAddress);
+        password = findViewById(R.id.Password);
+        signup = findViewById(R.id.button6);
+        login = findViewById(R.id.button4);
         DB = new DataBaseHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
