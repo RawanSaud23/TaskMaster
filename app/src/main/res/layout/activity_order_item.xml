@@ -153,16 +153,16 @@
 
         <Button
             android:id="@+id/CancleOreder"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="320dp"
             android:background="@drawable/delete"
             />
 
         <Button
             android:id="@+id/editButton"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="267dp"
             android:background="@drawable/edit"/>
 
