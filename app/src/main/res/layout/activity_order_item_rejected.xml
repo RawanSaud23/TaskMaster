@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
     app:cardCornerRadius="20dp"
     app:cardElevation="20dp">
 
@@ -37,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textColor="@color/green"
+            android:textColor="@color/red"
             android:fontFamily="@font/poppins_semibold"
             android:layout_below="@id/orderName"
             android:layout_toEndOf="@id/Subcategory1image"
@@ -58,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/WorkerInfo"
             android:layout_marginStart="49dp"
-            android:layout_marginBottom="13dp"
+            android:layout_marginBottom="3dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -81,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/amount"
             android:layout_marginStart="200dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="3dp"
             android:layout_toEndOf="@+id/Subcategory1image"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
@@ -129,28 +128,7 @@
             android:textSize="15sp"
             />
 
-        <TextView
-            android:id="@+id/Rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/WorkerInfo"
-            android:layout_marginStart="45dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Rate: "
-            android:textColor="@color/black"
-            android:textSize="25sp" />
 
-        <EditText
-            android:id="@+id/editTextText3"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_below="@+id/WorkerInfo"
-            android:layout_marginStart="-2dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/Rate"
-            android:ems="10"
-            android:hint="OUT OF 5"
-            android:inputType="text" />
 
 
     </RelativeLayout>
