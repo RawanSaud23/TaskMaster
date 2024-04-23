@@ -92,13 +92,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (cursor.getCount() > 0) return true;
         return false;
     }
-    public Boolean checkUsernamePassword(String username, String password){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from " + CLIENT_TABLE + " where " + COLUMN_CLIENT_NAME + " = ? and " + COLUMN_CLIENT_PASSWORD +
-                " = ?", new String[] {username,password});
-        if(cursor.getCount()>0) return true;
-        return false;
-    }
+
 
     public boolean addService(servicemod servicemod) {
         SQLiteDatabase db = this.getWritableDatabase();
