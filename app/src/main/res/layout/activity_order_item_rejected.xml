@@ -152,20 +152,6 @@
             android:hint="OUT OF 5"
             android:inputType="text" />
 
-        <Button
-            android:id="@+id/CancleOreder"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="310dp"
-            android:background="@drawable/delete"/>
-
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="265dp"
-            android:background="@drawable/edit"/>
-
 
     </RelativeLayout>
 
