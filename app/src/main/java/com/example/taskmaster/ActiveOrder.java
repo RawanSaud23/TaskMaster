@@ -1,6 +1,7 @@
 package com.example.taskmaster;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,16 +15,46 @@ import android.content.SharedPreferences;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import java.util.List;
 //try11
 public class ActiveOrder extends AppCompatActivity {
 
+    Toolbar homebar, ordersbar, logoutbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_order);
+
+        homebar = findViewById(R.id.homebutton);
+        ordersbar = findViewById(R.id.ordersbutton);
+        logoutbar = findViewById(R.id.logoutbutton);
+
+        homebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), categorieshomepage.class);
+                startActivity(intent);
+            }
+        });
+
+        ordersbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActiveOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Get the order ID from the intent
         DataBaseHelper dbHelper = new DataBaseHelper(this);
@@ -46,6 +77,7 @@ public class ActiveOrder extends AppCompatActivity {
 
 
         }
+
 
     }
     private void displayOrderDetails(ordermod order) {
