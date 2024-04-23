@@ -47,7 +47,7 @@ public class subcategorydetailscarpetwash extends AppCompatActivity {
                 Boolean insert = DB.addOrder(order);
                 if(insert){
                     Toast.makeText(subcategorydetailscarpetwash.this, "Successful Order", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),categorieshomepage.class);
+                    Intent intent = new Intent(getApplicationContext(),ActiveOrder.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(subcategorydetailscarpetwash.this, "Failed to complete the order", Toast.LENGTH_SHORT).show();
