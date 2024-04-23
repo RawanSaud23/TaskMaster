@@ -29,7 +29,7 @@ public class CleaningSub extends AppCompatActivity {
         s=findViewById(R.id.shoe);
         s.setOnClickListener(new View.OnClickListener() { @Override
         public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), subcategoreydetailsshoewash.class);
+            Intent intent = new Intent(getApplicationContext(), SubactegorydetailsshoeActivity.class);
             startActivity(intent);
         } });
 

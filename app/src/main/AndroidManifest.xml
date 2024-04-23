@@ -13,6 +13,9 @@
         android:theme="@style/Theme.TaskMaster"
         tools:targetApi="31">
         <activity
+            android:name=".SubactegorydetailsshoeActivity"
+            android:exported="false" />
+        <activity
             android:name=".subcategorydetailsdynamo"
             android:exported="false" />
         <activity
