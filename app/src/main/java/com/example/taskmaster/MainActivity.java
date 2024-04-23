@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         dbhelper.addService(service7);
         dbhelper.addService(service8);
 
-        ordermod order1 = new ordermod(1, 1, "amustafa@hotmail.com", "P.O.Box: 55570", 50, "2:00", "Khalid Batais", "Accepted", "051234567");
-        ordermod order2 = new ordermod(2, 5, "amustafa@hotmail.com", "P.O.Box: 88910", 100, "3:00", "Muhammad Ashraf", "Rejected", "054567890");
-        ordermod order3 = new ordermod(3, 7, "ikhalil@yahoo.com", "P.O.Box: 21634", 25, "2:00", "Asif Hakeem", "Accepted", "059378378");
+        ordermod order1 = new ordermod(1, 1, "amustafa@hotmail.com", "P.O.Box: 55570", 50, "2:00", "Khalid ", "Accepted", "051234567");
+        ordermod order2 = new ordermod(2, 5, "amustafa@hotmail.com", "P.O.Box: 88910", 100, "3:00", "Muhammad ", "Rejected", "054567890");
+        ordermod order3 = new ordermod(3, 7, "ikhalil@yahoo.com", "P.O.Box: 21634", 25, "2:00", "Asif ", "Accepted", "059378378");
         dbhelper.addOrder(order1);
         dbhelper.addOrder(order2);
         dbhelper.addOrder(order3);
