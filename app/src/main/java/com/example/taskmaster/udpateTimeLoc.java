@@ -1,8 +1,11 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +18,7 @@ public class udpateTimeLoc extends AppCompatActivity {
     private EditText TimeEd,LocEd;
     private Button update;
 
-    //DB???
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,5 +45,20 @@ public class udpateTimeLoc extends AppCompatActivity {
 
             }
         });
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle navigation arrow click here
+            // For example, start the PlumbingSub activity
+            Intent intent = new Intent(this, ActiveOrder.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

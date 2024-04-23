@@ -1,9 +1,10 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -12,6 +13,9 @@ RelativeLayout w ;
 RelativeLayout r;
 RelativeLayout f ;
 RelativeLayout d ;
+
+Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,21 @@ RelativeLayout d ;
             startActivity(intent);
         } });
 
-
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle navigation arrow click here
+            // For example, start the PlumbingSub activity
+            Intent intent = new Intent(this, categorieshomepage.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
