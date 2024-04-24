@@ -17,8 +17,7 @@
             android:layout_width="286dp"
             android:layout_height="61dp"
             android:layout_margin="32dp"
-            android:fontFamily="serif"
-            android:text="Are you sure yo want to edit your order?"
+            android:text="Are you sure yo want to Make change on your order?"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/error_msg">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/error_yes"
+                android:id="@+id/edit_yes"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -49,7 +48,7 @@
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/error_no"
+                android:id="@+id/edit_no"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
