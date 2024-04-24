@@ -12,16 +12,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.content.SharedPreferences;
 
 
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import java.util.ArrayList;
 import java.util.List;
 //try11
 public class ActiveOrder extends AppCompatActivity {
@@ -85,6 +88,20 @@ public class ActiveOrder extends AppCompatActivity {
 
 
         }
+        // Set up search functionality
+        android.widget.SearchView searchView = findViewById(R.id.search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterOrders(newText);
+                return true;
+            }
+        });
 
 
     }
@@ -134,6 +151,53 @@ public class ActiveOrder extends AppCompatActivity {
         // Add the order item view to the appropriate container in your layout
         LinearLayout ordersContainer = findViewById(R.id.ordersContainer);
         ordersContainer.addView(orderItemView);
+    }
+
+    private void filterOrders(String query) {
+        // Get all orders again to ensure fresh data
+        DataBaseHelper dbHelper = new DataBaseHelper(this);
+        SharedPreferences sharedPreferences= getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String targetEmail = sharedPreferences.getString("email","email@hotmail.com");
+
+        int i = 1;
+        List<ordermod> allOrders = new ArrayList<>();
+
+        while (true) {
+            ordermod order = dbHelper.getOrderById(i);
+            if (order == null) {
+                // No more orders available, exit the loop
+                break;
+            }
+
+            if (order.getClientID().equals(targetEmail)) {
+                allOrders.add(order);
+            }
+            i++;
+        }
+
+        // Filter orders based on the query
+        List<ordermod> filteredOrders = new ArrayList<>();
+        for (ordermod order : allOrders) {
+            servicemod service = dbHelper.getserviceById(order.getServiceID());
+            if (service != null && service.getSubcategory().toLowerCase().contains(query.toLowerCase())) {
+                filteredOrders.add(order);
+            }
+        }
+
+        // Clear previous order views
+        LinearLayout ordersContainer = findViewById(R.id.ordersContainer);
+        ordersContainer.removeAllViews();
+
+        // Display filtered orders
+        for (ordermod order : filteredOrders) {
+            displayOrderDetails(order);
+        }
+        TextView noOrdersTextView = findViewById(R.id.noOrdersTextView);
+        if (filteredOrders.isEmpty()) {
+            noOrdersTextView.setVisibility(View.VISIBLE);
+        } else {
+            noOrdersTextView.setVisibility(View.GONE);
+        }
     }
 
 
