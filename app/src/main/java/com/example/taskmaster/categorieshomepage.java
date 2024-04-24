@@ -1,6 +1,7 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 public class categorieshomepage extends AppCompatActivity {
     RelativeLayout p ;
     RelativeLayout c ;
+
+    Toolbar homebar, ordersbar, logoutbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,17 +33,35 @@ public class categorieshomepage extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), CleaningSub.class);
             startActivity(intent);
         } });
-    }
-    
-        @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.bottomnav, menu);
-        MenuItem home = menu.findItem(R.id.home);
-        MenuItem orders = menu.findItem(R.id.orders);
-        MenuItem logout = menu.findItem(R.id.logout);
 
+        homebar = findViewById(R.id.homebutton);
+        ordersbar = findViewById(R.id.ordersbutton);
+        logoutbar = findViewById(R.id.logoutbutton);
 
-        return true;
+        homebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), categorieshomepage.class);
+                startActivity(intent);
+            }
+        });
+
+        ordersbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActiveOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }

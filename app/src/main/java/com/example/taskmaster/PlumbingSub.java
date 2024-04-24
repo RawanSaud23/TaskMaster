@@ -14,7 +14,7 @@ RelativeLayout r;
 RelativeLayout f ;
 RelativeLayout d ;
 
-Toolbar toolbar;
+Toolbar toolbar, homebar, ordersbar, logoutbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,34 @@ Toolbar toolbar;
             Intent intent = new Intent(getApplicationContext(), subcategorydetailsdynamo.class);
             startActivity(intent);
         } });
+
+        homebar = findViewById(R.id.homebutton);
+        ordersbar = findViewById(R.id.ordersbutton);
+        logoutbar = findViewById(R.id.logoutbutton);
+
+        homebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), categorieshomepage.class);
+                startActivity(intent);
+            }
+        });
+
+        ordersbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActiveOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

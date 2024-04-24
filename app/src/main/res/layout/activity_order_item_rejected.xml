@@ -17,7 +17,7 @@
             android:id="@+id/Subcategory1image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/washbasins"
+            android:src="@drawable/untitled_design__1_"
             android:layout_alignParentStart="true" />
 
         <TextView

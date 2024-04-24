@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,17 +18,51 @@ import android.content.SharedPreferences;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
 import java.util.List;
 //try11
 public class ActiveOrder extends AppCompatActivity {
 
-    Button btn;
+    Toolbar homebar, ordersbar, logoutbar;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_order);
+
+        homebar = findViewById(R.id.homebutton);
+        ordersbar = findViewById(R.id.ordersbutton);
+        logoutbar = findViewById(R.id.logoutbutton);
+
+        homebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), categorieshomepage.class);
+                startActivity(intent);
+            }
+        });
+
+        ordersbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActiveOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Get the order ID from the intent
         DataBaseHelper dbHelper = new DataBaseHelper(this);
@@ -49,20 +85,9 @@ public class ActiveOrder extends AppCompatActivity {
 
 
         }
-        //View orderItemView = LayoutInflater.from(this).inflate(R.layout.activity_order_item, null);
-        //btn = orderItemView.findViewById(R.id.editButton);
 
-        /*btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String
 
-                Intent intent= new Intent(ActiveOrder.this, updateTimeLoc.class);
-                intent.putExtra("keyID", )
-            }
-        }); */
     }
-
     private void displayOrderDetails(ordermod order) {
         // Inflate the appropriate layout based on the order status
         View orderItemView;

@@ -15,7 +15,7 @@ public class CleaningSub extends AppCompatActivity {
     RelativeLayout c ;
     RelativeLayout r ;
 
-    Toolbar toolbar;
+    Toolbar toolbar, homebar, ordersbar, logoutbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,34 @@ public class CleaningSub extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        homebar = findViewById(R.id.homebutton);
+        ordersbar = findViewById(R.id.ordersbutton);
+        logoutbar = findViewById(R.id.logoutbutton);
+
+        homebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), categorieshomepage.class);
+                startActivity(intent);
+            }
+        });
+
+        ordersbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActiveOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        logoutbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -67,4 +95,5 @@ public class CleaningSub extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
